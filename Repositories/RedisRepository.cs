@@ -32,7 +32,7 @@ public class RedisRepository
     /// Salva um pagamento processado em um Sorted Set.
     /// O score do Sorted Set é o timestamp, permitindo consultas por faixa de tempo.
     /// </summary>
-    public async Task SavePaymentAsync(string processorType, PaymentRequestDto payment, DateTime requestedAt)
+    public async Task SavePaymentAsync(string processorType, PostPaymentRequestDto payment, DateTime requestedAt)
     {
         // Converte o DateTime para timestamp em milissegundos
         var timestamp = new DateTimeOffset(requestedAt).ToUnixTimeMilliseconds();

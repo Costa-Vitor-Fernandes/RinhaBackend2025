@@ -22,7 +22,7 @@ public class PaymentsService
     /// <summary>
     /// Processa um pagamento, escolhendo o processador mais rápido e registrando o pagamento no repositório.
     /// </summary>
-    public async Task ProcessPaymentAsync(PaymentRequestDto paymentRequest)
+    public async Task ProcessPaymentAsync(PostPaymentRequestDto paymentRequest)
     {
         // var defaultHealth = await GetOrCreateHealthCheckAsync(DefaultProcessorUrl, "default");
         // var fallbackHealth = await GetOrCreateHealthCheckAsync(FallbackProcessorUrl, "fallback");
@@ -64,7 +64,7 @@ public class PaymentsService
         }
 
         // Cria a requisição completa para o Payment Processor, adicionando o requestedAt
-        var paymentProcessorRequest = new PaymentRequestDto
+        var paymentProcessorRequest = new ProcessorPaymentRequestDto
         {
             CorrelationId = paymentRequest.CorrelationId,
             Amount = paymentRequest.Amount,

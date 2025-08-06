@@ -1,14 +1,20 @@
 namespace RinhaBackend2025.Models;
 
-// Representa a requisição POST /payments
-public class PaymentRequestDto
+public class PostPaymentRequestDto
+{
+    public Guid CorrelationId { get; set; }
+    public decimal Amount { get; set; }
+}
+
+// DTO para a requisição que seu backend envia para o Payment Processor
+public class ProcessorPaymentRequestDto
 {
     public Guid CorrelationId { get; set; }
     public decimal Amount { get; set; }
     public DateTime RequestedAt { get; set; }
 }
 
-// Representa o resumo dos pagamentos para o GET /payments-summary
+// Representa o resumo dos pagamentos para o GET /payments/summary
 public class PaymentsSummaryDto
 {
     public ProcessorSummary Default { get; set; } = new ProcessorSummary();

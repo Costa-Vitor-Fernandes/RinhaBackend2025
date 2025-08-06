@@ -17,7 +17,7 @@ public class PaymentsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> PostPayment([FromBody] PaymentRequestDto request)
+    public async Task<IActionResult> PostPayment([FromBody] PostPaymentRequestDto request)
     {
         // A lógica de roteamento e processamento será feita no serviço
         await _paymentsService.ProcessPaymentAsync(request);
@@ -25,7 +25,7 @@ public class PaymentsController : ControllerBase
         return Ok();
     }
 
-    [HttpGet("payments-summary")]
+    [HttpGet("summary")]
     public async Task<ActionResult<PaymentsSummaryDto>> GetPaymentsSummary([FromQuery] DateTime? from, [FromQuery] DateTime? to)
     {
         var summary = await _paymentsService.GetPaymentsSummaryAsync(from!, to!);

@@ -1,3 +1,4 @@
+using System.Text.Json;
 using RinhaBackend2025.Repositories;
 using RinhaBackend2025.Services;
 using RinhaBackend2025.Clients;
@@ -22,9 +23,13 @@ builder.Services.AddHttpClient<PaymentsProcessorClient>(client =>
     // Opcional, mas útil para definir um tempo limite global.
     client.Timeout = TimeSpan.FromSeconds(5);
 });
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+});
 
 var app = builder.Build();
-
+app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();
 
